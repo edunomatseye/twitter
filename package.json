@@ -19,6 +19,7 @@
     "react-scripts": "5.0.0",
     "react-time-ago": "^7.1.9",
     "react-twitter-embed": "^4.0.4",
+    "swr": "^1.2.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

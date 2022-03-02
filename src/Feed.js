@@ -10,19 +10,22 @@ import { collection, getDocs } from 'firebase/firestore';
 function Feed({
   tweetRef
 }) {
-  const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    // Get a list of cities from your database
-    const getPosts = async () =>{
-      const postsCollection = collection(db, 'posts');
-      const postSnapshot = await getDocs(postsCollection);
-      const postList = postSnapshot.docs.map(doc => doc.data());
-      return postList;
-    }
+  // using Firebase firestore
+  // const [posts, setPosts] = useState([]);
+  // useEffect(() => {
+  //   // Get a list of cities from your database
+  //   const getPosts = async () =>{
+  //     const postsCollection = collection(db, 'posts');
+  //     const postSnapshot = await getDocs(postsCollection);
+  //     const postList = postSnapshot.docs.map(doc => doc.data());
+  //     return postList;
+  //   }
 
-    getPosts().then(posts => {setPosts(posts)})
-  }, [posts]);
+  //   getPosts().then(posts => {setPosts(posts)})
+  // }, [posts]);
+
+  const { posts, isLoading, isError } = usePosts()
 
 
   return (
