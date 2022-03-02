@@ -10,7 +10,10 @@ import Button from '@mui/material/Button';
 
 import SidebarOption from './SidebarOption'
 
-function Sidebar() {
+function Sidebar({
+  focusTweet
+}) {
+  
   return (
     <div className="sidebar">
         {/* Twitter Icon */}
@@ -27,7 +30,7 @@ function Sidebar() {
         {/* sidebarOption */}
 
         {/* Tweet button */}
-        <Button variant="outlined" className="sidebar__tweet" fullWidth>Tweet</Button>
+        <Button onClick={focusTweet} variant="outlined" className="sidebar__tweet" fullWidth>Tweet</Button>
     </div>
   )
 }

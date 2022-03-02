@@ -3,15 +3,20 @@ import Sidebar from './Sidebar'
 import Feed from './Feed'
 import Widgets from './Widgets'
 
+import { useFocus } from './utils'
+
 function App() {
+  
+  const [inputRef, setInputFocus] = useFocus()
+
   return (
     <div className="app">
 
       {/* Sidebar */}
-      <Sidebar />
+      <Sidebar focusTweet={setInputFocus} />
 
       {/* Feeds */}
-      <Feed />
+      <Feed tweetRef={inputRef} />
 
       {/* Widget */}
       <Widgets />
