@@ -5,32 +5,32 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
-
+import {Link} from 'react-router-dom'
 import Button from '@mui/material/Button';
-
 import SidebarOption from './SidebarOption'
+import {useRecoilValue} from 'recoil'
+import {useNavigate} from 'react-router-dom'
 
-function Sidebar({
-  focusTweet
-}) {
+import { userAtom } from './_state'
+function Sidebar() {
   
-  return (
+const user = useRecoilValue(userAtom)
+const navigate = useNavigate()
+return (
     <div className="sidebar">
         {/* Twitter Icon */}
-        <TwitterIcon className="sidebar__twitterIcon" />
+        <Link to="/"><TwitterIcon className="sidebar__twitterIcon" /></Link>
 
-        <SidebarOption text="Home" Icon={HomeIcon} active></SidebarOption>
-        <SidebarOption text="Search" Icon={SearchOutlinedIcon} ></SidebarOption>
-        <SidebarOption text="Profile" Icon={PersonOutlineOutlinedIcon} ></SidebarOption>
-        <SidebarOption text="Notification" Icon={NotificationsActiveOutlinedIcon} ></SidebarOption>
+        <SidebarOption text="Home" to={"/home"} Icon={HomeIcon} active></SidebarOption>
+        <SidebarOption text="Profile" to={`/profile/${user.username}`} Icon={PersonOutlineOutlinedIcon} ></SidebarOption>
+        <SidebarOption text="Search" to={"#/search"} Icon={SearchOutlinedIcon} ></SidebarOption>
+        <SidebarOption text="Notification" to={"#/notification"} Icon={NotificationsActiveOutlinedIcon} ></SidebarOption>
 
-        {/* sidebarOption */}
-        {/* sidebarOption */}
         {/* sidebarOption */}
         {/* sidebarOption */}
 
         {/* Tweet button */}
-        <Button onClick={focusTweet} variant="outlined" className="sidebar__tweet" fullWidth>Tweet</Button>
+        <Button onClick={()=> navigate(`./profile/${user.username}`)} className="sidebar__tweet" fullWidth>{user.displayName} <br/> @{user.username}</Button> 
     </div>
   )
 }

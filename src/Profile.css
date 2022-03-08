@@ -1,0 +1,96 @@
+.profile {
+    border-bottom: 8px solid var(--twitter-background-color);
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.calender {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    align-content: space-between;
+}
+
+.profile__unfollow {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile__image_button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top:5px;
+}
+
+#profile-bg{
+    background-color:cadetblue;
+    height: 200px;
+    padding:1px;
+    vertical-align: bottom;
+}
+#profile-link{
+    background-color: #fff;
+    border-radius: 6px;
+    display: inline-block;
+    margin:-60px 0px 0px 8px;
+    max-width:100%;
+    padding:1px;
+    vertical-align: bottom;
+}
+#profile-img{
+    border:2px solid #fff;
+    border-radius: 70px;
+    color:#fff;
+    height:172px;
+    width:172px;
+    padding-top: 10px;
+}
+#profile-marg{
+    margin:15px;
+    padding:10px;
+}
+#profile-name{
+    font-size:18px;
+    font-weight: 700;
+    line-height: 21px;
+    margin-bottom: 10px;
+}
+#profile-name a{
+    color:inherit;
+}
+#profile-state{
+    padding:15px;
+}
+#profile-Arrange{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin:0;
+    min-width:100%;
+    padding:0px;
+}
+ul#profile-Arrange{
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+#profile-details a:hover{
+    text-decoration: none;
+}
+#profile-number{
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.15s ease-in-out 0s;
+}
+#profile-label{
+    color:#8899a6;
+    font-size:10px;
+    letter-spacing: 0.02em;
+    overflow: hidden;
+    text-transform: uppercase;
+    transition: color 0.15s ease-in-out 0s;
+}

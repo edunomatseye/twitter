@@ -1,7 +1,7 @@
 .feed {
     flex: 0.4;
     border-right: 1px solid var(--twitter-background-color);
-    min-width: fit-content;
+    /* min-width: fit-content; */
     overflow-y: scroll;
 }
 
@@ -22,9 +22,26 @@
     z-index: 100;
     border: 1px solid var(--twitter-background-color);
     padding: 15px 20px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .feed__header > h2 {
     font-size: 20px;
     font-weight: 800;
+}
+
+.feed__arrowbutton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.feed__togglePost {
+    font-size: 18;
+    font-weight: 800;
+    color: green;
 }

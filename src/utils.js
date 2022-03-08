@@ -1,7 +1,7 @@
 import {useRef} from 'react'
 import useSWR from 'swr'
 
-const API = "http://localhost:3001"
+const API = "http://localhost:3000"
 
 const useFocus = () => {
     const htmlElRef = useRef(null)
@@ -28,6 +28,8 @@ const usePosts = () => {
       isError: error
     }
 }
+
+
 
 export {
     useFocus,

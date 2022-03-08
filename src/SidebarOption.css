@@ -12,6 +12,9 @@
     font-weight: 800;
     font-size: 20px;
     margin-right: 20px;
+    text-decoration-line: none;
+    text-decoration: none;
+    
 }
 
 .sidebarOption:hover {
@@ -19,8 +22,16 @@
     border-radius: 30px;
     color: var(--twitter-color);
     transition: color 200ms ease-out;
+    text-decoration: none;
 }
 
 .sidebarOption--active {
     color: var(--twitter-color);
 }
+
+a:link, a:visited {
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color: black
+  }

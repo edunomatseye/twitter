@@ -1,27 +1,23 @@
 import './App.css';
-import Sidebar from './Sidebar'
-import Feed from './Feed'
-import Widgets from './Widgets'
+import FeedBox from './FeedBox'
+import ProfileBox from './ProfileBox'
 
-import { useFocus } from './utils'
+import Layout from './Layout'
+import {Routes, Route} from "react-router-dom";
 
 function App() {
   
-  const [inputRef, setInputFocus] = useFocus()
-
   return (
-    <div className="app">
-
-      {/* Sidebar */}
-      <Sidebar focusTweet={setInputFocus} />
-
-      {/* Feeds */}
-      <Feed tweetRef={inputRef} />
-
-      {/* Widget */}
-      <Widgets />
-
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<FeedBox/>} />
+        <Route path="home" element={<FeedBox />} />
+        
+        <Route path="profile/:username" element={<ProfileBox />} />
+         
+        <Route path="*" element={<FeedBox />} />
+      </Route>
+    </Routes>
   );
 }
 

@@ -12,13 +12,16 @@
 .tweetBox__input {
     padding: 20px;
     display: flex;
+    align-items: flex-start;
 }
 
-.tweetBox__input > input {
+.tweetBox__input > textarea {
     flex: 1;
     margin-left: 20px;
     font-size: 20px;
     border: none;
+    outline: none;
+    height: 100px;
 }
 
 .tweetBox > form > Button {

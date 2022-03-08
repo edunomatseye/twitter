@@ -2,18 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { RecoilRoot } from 'recoil';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from "react-router-dom";
 
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
-
-
 TimeAgo.addDefaultLocale(en)
-
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <RecoilRoot>
+          <App />
+      </RecoilRoot>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

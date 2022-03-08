@@ -1,56 +1,80 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import "./Feed.css"
-import TweetBox from './TweetBox'
+import {useParams, useNavigate} from 'react-router-dom'
 import Post from './Post'
-
-import db from "./firebase";
 import FlipMove from "react-flip-move";
-import { collection, getDocs } from 'firebase/firestore';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-function Feed({
-  tweetRef
-}) {
+import { useRecoilState } from 'recoil'
+import { postsAtom, filteredPostsAtom } from './_state'
+import Button from '@mui/material/Button';
 
-  // using Firebase firestore
-  // const [posts, setPosts] = useState([]);
-  // useEffect(() => {
-  //   // Get a list of cities from your database
-  //   const getPosts = async () =>{
-  //     const postsCollection = collection(db, 'posts');
-  //     const postSnapshot = await getDocs(postsCollection);
-  //     const postList = postSnapshot.docs.map(doc => doc.data());
-  //     return postList;
-  //   }
+const url = 'http://localhost:3001'
+function Feed({children}) {
+  const navigate = useNavigate()
+  const initPostConfig = {
+    showAllPost: true,
+    postLabel: "following"
+  }
 
-  //   getPosts().then(posts => {setPosts(posts)})
-  // }, [posts]);
+  const [posts, setPosts] = useRecoilState(postsAtom)
+  const [filteredPosts, setFilteredPosts] = useRecoilState(filteredPostsAtom)
 
-  const { posts, isLoading, isError } = usePosts()
+  //LOCAL state
+  const [postConfig, setPostConfig] = useState(initPostConfig)
+  const {username} = useParams();
 
+  useEffect(()=>{
+    const fetchPosts= async()=> {
+      try{
+        const r = await fetch(`${url}/posts`)
+        const p = await r.json()
+        setPosts(p)
+      }catch(e){
+        console.error(e)
+      }
+    }
+    fetchPosts()
+  },[setPosts]);
+
+  useEffect(()=> {
+    setFilteredPosts(posts)
+  }, [posts, setFilteredPosts])
+  
+  const togglePost=()=> {
+    const showAllPost = !postConfig.showAllPost
+    const postLabel = showAllPost? "following": "All Posts"
+    
+    //get all filtered post (following)
+    const following = posts.filter((e, i, arr)=>{
+      return e.following === true
+    })
+    //set filtered post
+    showAllPost? setFilteredPosts(posts): setFilteredPosts(following)
+    setPostConfig({postLabel, showAllPost})
+  }
 
   return (
     <div  className="feed">
       {/* Header */}
       <div className="feed__header">
-          <h2>Home</h2>
+        { typeof(username) === "string"
+        ? <div className="feed__arrowbutton"><ArrowBackIcon /> <span onClick={()=> navigate(-1)}> @{username}</span></div>
+        : <h2>Home</h2> 
+        }
+        <Button onClick={togglePost}>{postConfig.postLabel}</Button>
       </div>
 
       {/**TweetBox */}
-      <TweetBox tweetRef={tweetRef} />
+      {/* <TweetBox /> */}
+      {children}
 
-     
       {/** Post */}
       <FlipMove>
-        {posts.map((post) => (
+        {filteredPosts.map((post) => (
           <Post
-            key={post.text}
-            displayName={post.displayName}
-            username={post.username}
-            verified={post.verified}
-            text={post.text}
-            avatar={post.avatar}
-            image={post.image}
-            timestamp={post.timestamp}
+            key={post.id}
+            postProp={post}
           />
         ))}
       </FlipMove>
